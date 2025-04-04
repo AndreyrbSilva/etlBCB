@@ -1,6 +1,6 @@
 # ETLbcb
 
-## Explicação de cada Função implementada no repositório
+## Detalhamento das Funções do Repositório 📜
 
 ### 🎲 Coleta de Dados
 ~~~~ python
