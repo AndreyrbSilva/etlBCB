@@ -2,29 +2,6 @@
 
 ## Detalhamento das Funções do Repositório 📜
 
-### 🎲 Coleta de Dados
-~~~~ python
-def requestApiBcb(data: str) -> pd.DataFrame:
-    url = f'https://olinda.bcb.gov.br/olinda/servico/MPV_DadosAbertos/versao/v1/odata/MeiosdePagamentosTrimestralDA(trimestre=@trimestre)?@trimestre=%27{data}%27&$format=json'
-
-    req = requests.get(url)
-    dados = req.json()
-
-    df = pd.json_normalize(dados['value'])
-
-    df['datatrimestre'] = pd.to_datetime(df['datatrimestre'])
-
-    return df
-~~~~
-Essa função foi feita para automatizar a coleta de dados trimestrais sobre meios de pagamento usando a API pública do Banco Central do Brasil.
-
-Aqui está o que ela faz:
-
-* Monta a URL da requisição com base no trimestre escolhido (por exemplo, "20191").
-* Faz uma requisição HTTP para pegar os dados direto da API.
-* Converte a resposta JSON em um DataFrame do Pandas, facilitando o trabalho com os dados.
-* Ajusta a coluna datatrimestre para o formato datetime, garantindo uma padronização que evita problemas, como incompatibilidades com bancos de dados.
-
 ### 🔁 Conversão de dados para CSV
 ~~~~python
 def salvarCsv(df: pd.DataFrame, nome_arquivo: str, separador: str, decimal: str):
